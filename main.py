@@ -1,6 +1,8 @@
 import pygame
 import sys
 import random
+from object import Object
+# from pygame.math import Vector2
 
 pygame.init()
 pygame.mixer.init()
@@ -20,6 +22,7 @@ WHITE = (255, 255, 255)
 BLUE_SKY = (152, 166, 255)
 RED = (255, 0, 0)
 GREEN = (0, 255, 0)
+LIGHT_GREEN = (204, 255, 209)
 
 # Display
 SCREEN = pygame.display.set_mode((WIDTH, HEIGHT))
@@ -44,22 +47,12 @@ class Figure:
         SCREEN.blit(DITTO, (mouse_x - 90, 330))
 
 
-class Object:
+class Main:
     def __init__(self):
-        self.red_surface = pygame.Surface((50, 50))
-        self.red_surface.fill(RED)
-        self.green_surface = pygame.Surface((50, 50))
-        self.green_surface.fill(GREEN)
-        self.red_rect = self.red_surface.get_rect(center=(random_cell * CELL_SIZE, -100))
-        self.green_rect = self.green_surface.get_rect(center=(100, -100))
+        self.object = Object()
 
-    def blit_shape(self):
-        SCREEN.blit(self.red_surface, self.red_rect)
-        SCREEN.blit(self.green_surface, self.green_rect)
-
-    def fall_shape(self):
-        self.red_rect.y += 2
-        self.green_rect.y += 2
+    def check_figures(self):
+        pass
 
 
 # Game loop
@@ -77,7 +70,7 @@ while running:
             pygame.quit()
             sys.exit()
 
-    SCREEN.fill(WHITE)
+    SCREEN.fill(LIGHT_GREEN)
     SCREEN.blit(floor_surface, floor_rect)
     figure.draw_figure(mx)
     object_class.blit_shape()
